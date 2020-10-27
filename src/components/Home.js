@@ -17,13 +17,6 @@ function Home() {
       .then((response) => {
         setWeather(response.data);
       });
-    // fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
-    //   .then((res) => res.json())
-    //   .then((result) => {
-    //     setWeather(result);
-    //     setQuery("");
-    //     console.log(result);
-    //   });
   };
 
   const dateBuilder = (d) => {
@@ -94,9 +87,6 @@ function Home() {
               <div className="temp">{Math.round(weather.main.temp)}°c</div>
               <div className="weather">{weather.weather[0].main}</div>
             </div>
-            <nav>
-              <footer>This is a footer</footer>
-            </nav>
           </div>
         ) : (
           ""
