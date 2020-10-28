@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const api = {
@@ -6,7 +6,7 @@ const api = {
   base: "https://api.openweathermap.org/data/2.5/",
 };
 function Home() {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('Accra');
   const [weather, setWeather] = useState({});
 
   const search = (e) => {
@@ -18,6 +18,19 @@ function Home() {
         setWeather(response.data);
       });
   };
+
+
+  const loadFirst = () => {
+    axios
+    .post(`${api.base}weather?q=Accra&units=metric&APPID=${api.key}`)
+    .then((response) => {
+      setWeather(response.data);
+    });
+  }
+  
+  useEffect( ()=> {
+    loadFirst()
+  },[])
 
   const dateBuilder = (d) => {
     let months = [
@@ -68,7 +81,7 @@ function Home() {
             <input
               type="text"
               className="search-bar"
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={(event) => setQuery(event.target.value)}
               value={query}
               placeholder="Search..."
             />
