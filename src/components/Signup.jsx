@@ -2,10 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export class Signup extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="card col-lg-4 container  justify-content-center">

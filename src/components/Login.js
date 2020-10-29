@@ -1,12 +1,14 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
+import {AuthContext} from "./context/auth-context";
 
-export class Login extends React.Component {
-  constructor(props) {
-    super(props);
+const  Login = () => {
+  const auth = useContext(AuthContext)
+
+  const loginHandler = e =>{
+    auth.login()
   }
-
-  render() {
+ 
     return (
       <div className='card col-lg-4 container  justify-content-center'>
         <div className='card-header h5'>Login</div>
@@ -15,17 +17,19 @@ export class Login extends React.Component {
 
         <div className="form-group">
               <label htmlFor="username">Username: </label>
-              <input type="text" name="username" placeholder="username" />
+              <input type="text" name="username" placeholder="username" required />
             </div>
 
             <div className="form-group">
               <label htmlFor="password">Password: </label>
-              <input type="password" name="password" placeholder="password" />
+              <input type="password" name="password" placeholder="password" required/>
             </div>
 
-          <center><div type="button" className="btn btn-primary">
-            Login
-          </div></center>
+          <center>
+            <div type="button" className="btn btn-primary" onClick={loginHandler}>
+              Login
+            </div>
+          </center>
 
         </div>
         <div className="card-footer">
@@ -33,6 +37,6 @@ export class Login extends React.Component {
         </div>
       </div>
     );
-  }
+  
 }
 export default Login;
