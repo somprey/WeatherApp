@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import {AuthContext} from "./context/auth-context";
 
 const Navigation = () => {
+
     const auth = useContext(AuthContext)
-const logoutHandler = e => {
+
+    const logoutHandler = e => {
     auth.logout();
 }
     return (
@@ -15,9 +17,13 @@ const logoutHandler = e => {
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">
                 <Nav.Link ClassName='text-white btn btn-primary'><Link to='/' >Home</Link> </Nav.Link>
-                {!auth.isLoggedIn && ( 
-                <Nav.Link><Link to='/login' ClassName='text-white' style={{ textDecoration: 'none' }}> Login</Link></Nav.Link> 
-                )}
+
+                {
+
+!auth.isLoggedIn && ( <Nav.Link><Link to='/login' ClassName='text-white' style={{ textDecoration: 'none' }}> Login</Link></Nav.Link>)
+
+                }
+
                 {auth.isLoggedIn && ( 
                 <Nav.Link className='text-white' onClick={logoutHandler}> Log Out </Nav.Link>
                 )}

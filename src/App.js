@@ -21,11 +21,11 @@ function App() {
   if(isLoggedIn){
       routes =(
         <React.Fragment>
-        <Route path="/" exact>
-          <Home />
-        </Route>
+          <Route path="/" exact>
+            <Home />
+          </Route>
 
-        <Redirect to="/"/>
+          <Redirect to="/"/>
         </React.Fragment>
      
       )
@@ -57,17 +57,7 @@ function App() {
     <BrowserRouter>
       <Navigation />
       <Switch>
-        {/* <Route path="/" exact>
-          <Home />
-        </Route>
 
-        <Route path="/signup" exact>
-          <Signup />
-        </Route>
-  
-        <Route path="/login" exact>
-          <Login />
-        </Route> */}
         {routes}
 
       </Switch>
