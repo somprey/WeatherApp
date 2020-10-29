@@ -1,36 +1,33 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const api = {
-  key: "53268a647d290e9f6457193f68699300",
-  base: "https://api.openweathermap.org/data/2.5/",
-};
-function Home() {
+function Home(props) {
   const [query, setQuery] = useState('Accra');
   const [weather, setWeather] = useState({});
+  const [lastSearches, setLastSearches] = useState([])
 
-  const search = (e) => {
-    e.preventDefault();
+const getWeather = () => {
 
-    axios
-      .post(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
+      axios
+      .post('http://localhost:4000/getWeather/'+query)
       .then((response) => {
         setWeather(response.data);
       });
+
+     if (lastSearches.length<5 && lastSearches.indexOf(lastSearches)!==-1){
+       setLastSearches( [...lastSearches, query])
+     }
+}
+
+  const search = (e) => {
+    e.preventDefault();
+    getWeather()
+
   };
-
-
-  const loadFirst = () => {
-    axios
-    .post(`${api.base}weather?q=Accra&units=metric&APPID=${api.key}`)
-    .then((response) => {
-      setWeather(response.data);
-    });
-  }
-  
+ 
   useEffect( ()=> {
-    loadFirst()
-  },[])
+    getWeather()
+  }, [1])
 
   const dateBuilder = (d) => {
     let months = [
@@ -104,6 +101,7 @@ function Home() {
         ) : (
           ""
         )}
+        
       </main>
     </div>
   );
