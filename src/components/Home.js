@@ -61,7 +61,7 @@ const getWeather = () => {
 
     return `${day} ${date} ${month} ${year}`;
   };
-
+ 
   return (
     <div
       className={
